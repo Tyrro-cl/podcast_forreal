@@ -48,6 +48,7 @@
             <div class="card">
                 <div class="card-header">
                     User's Podcasts
+                    <a href="{{route('podcasts.create', ['user_id'=>$user->id])}}" class="btn btn-success mt-3"> New podcast </a>
                 </div>
                 <div class="card-body">
                     @foreach ($podcasts as $podcast)

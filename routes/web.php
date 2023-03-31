@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('podcasts', \App\Http\Controllers\PodcastController::class)->shallow();
 Route::resource('users', UserController::class)->shallow();
+Route::get('/the_podcasts', [\App\Http\Controllers\PodcastController::class, 'ThePodcasts'])->name('podcast.the_podcasts')->middleware('auth');
 /* Route::get('users', [UserController::class, 'index'])->name('users.index');
 Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
