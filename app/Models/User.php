@@ -22,6 +22,7 @@ class User extends Authenticatable
     protected $dateFormat = 'Y-m-d h:i:s';
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'password',
     ];

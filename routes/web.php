@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/auth/microsoft/redirect', function () {
     return Socialite::driver('azure')->redirect();
-});
+}) ->name('azure.login');
 Route::get('/login/microsoft/callback', function () {
     $socialiteUser = Socialite::driver('azure')->user();
 
@@ -44,8 +44,9 @@ Route::get('/login/microsoft/callback', function () {
             'email_verified_at' => now()
         ]);
     }
-
-    dd($user->getName(),$user->getEmail(),$user->getId());
+    Auth::login($user);
+    return redirect('/');
+    // dd($user->getName(),$user->getEmail(),$user->getId());
     // $user->token
 });
 
@@ -55,15 +56,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-Route::get('users', [UserController::class, 'index'])->name('users.index');
+Route::resource('podcasts', \App\Http\Controllers\PodcastController::class)->shallow();
+Route::resource('users', UserController::class)->shallow();
+/* Route::get('users', [UserController::class, 'index'])->name('users.index');
 Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
 Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::get('users/{user}/create', [UserController::class, 'create'])->name('users.create');
-Route::get('users/{user}/modify', [UserController::class, 'modify'])->name('users.modify');
-Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('users/{user}', [UserController::class, 'update'])->name('users.update'); */
 
 
 require __DIR__.'/auth.php';
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

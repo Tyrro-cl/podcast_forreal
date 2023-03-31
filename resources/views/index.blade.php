@@ -48,7 +48,7 @@
     <h1>USERS:</h1>
     <ul>
         @foreach($users as $user)
-            <li> {{$user->name}}
+            <li> {{$user->name}} {{$user->last_name}}
                 <a href="{{route('users.show',$user)}}" class="btn btn-primary btn-sm">View</a>
             </li>
         @endforeach

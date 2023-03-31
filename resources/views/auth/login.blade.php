@@ -39,7 +39,7 @@
                 </a>
             @endif
             <div class="ml-3">
-                    <a href="/auth/microsoft/redirect" class="btn btn-primary">
+                    <a href="{{route('azure.login')}}" class="btn btn-primary">
                         <i class="fab fa-microsoft"></i> Login with Microsoft
                     </a>
             </div>

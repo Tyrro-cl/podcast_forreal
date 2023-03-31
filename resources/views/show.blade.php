@@ -40,7 +40,7 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    <a href="{{ route('users.modify', $user) }}" class="btn btn-primary mt-2">Modify</a>
+                    <a href="{{ route('users.edit', $user) }}" class="btn btn-primary mt-2">Modify</a>
                 </div>
             </div>
         </div>
