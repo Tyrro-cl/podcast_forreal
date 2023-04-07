@@ -57,7 +57,7 @@
             <input type="file" class="form-control" name="podcast" id="podcast" accept="audio/*">
         </div>
 
-       <input type="hidden" id="{{($user->id)}}">
+       <input type="hidden" id="{{($podcasts->get('user_id'))}}">
 
         <button type="submit" class="btn btn-primary">Create Podcast</button>
     </form>

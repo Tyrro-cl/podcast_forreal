@@ -30,15 +30,21 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    User Info
+                    <h3 class="card-title">User Info</h3>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">{{ $user->name }}</h5>
+                    <h5 class="card-title">first name: {{ $user->name }}</h5>
+                    <h5 class="card-title">last name: {{ $user->last_name }}</h5>
                     <p class="card-text">User ID: {{ $user->id }}</p>
                     <form action="{{ route('users.destroy', $user) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
+
+                    <div class="form-group form-check">
+                        <label class="form-check-input" for="deletePodcasts">Delete users podcasts ?</label>
+                        <input type="checkbox" class="form-check-input" id="deletePodcasts" name="deletePodcasts">
+                    </div>
                     </form>
                     <a href="{{ route('users.edit', $user) }}" class="btn btn-primary mt-2">Modify</a>
                 </div>
@@ -47,16 +53,18 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    User's Podcasts
+                    <h3 class="card-title">User's Podcasts</h3>
                     <a href="{{route('podcasts.create', ['user_id'=>$user->id])}}" class="btn btn-success mt-3"> New podcast </a>
                 </div>
                 <div class="card-body">
                     @foreach ($podcasts as $podcast)
                         <div class="media mb-3">
-                            <img src="{{ $podcast->image_url }}" class="align-self-start mr-3" alt="{{ $podcast->title }}" width="64">
+                            <img src="{{ $podcast->image_url }}" class="align-self-start mr-3" alt="{{ $podcast->title }}" width="64" style="font-size:0">
                             <div class="media-body">
-                                <h5 class="mt-0">{{ $podcast->title }}</h5>
-                                <p>{{ $podcast->description }}</p>
+                                <h5 class="card-title" style="font-family: 'Berlin Sans FB',SansSerif,serif; text-decoration-line: underline" > Podcast title: {{ $podcast->title }}</h5>
+                                <h5 style="color: #1f2937">Description:</h5><p class="card-text" style="color: #6b7280; text-wrap: normal">
+                                    {{ $podcast->description }}
+                                    </p>
                             </div>
                         </div>
                     @endforeach

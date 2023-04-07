@@ -40,7 +40,7 @@
             @endif
             <div class="ml-3">
                     <a href="{{route('azure.login')}}" class="btn btn-primary">
-                        <i class="fab fa-microsoft"></i> Login with Microsoft
+                        <i class="fab fa-microsoft" style="color: #2563eb"></i> Login with Microsoft
                     </a>
             </div>
             <x-primary-button class="ml-3">
