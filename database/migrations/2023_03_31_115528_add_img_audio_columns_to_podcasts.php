@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('podcasts', function (Blueprint $table) {
             $table ->string('image')->nullable();
+            $table ->string('audio')->nullable();
             //
         });
     }
@@ -24,6 +25,7 @@ return new class extends Migration
     {
         Schema::table('podcasts', function (Blueprint $table) {
             $table->dropColumn('image');
+            $table ->dropColumn('audio');
             //
         });
     }

@@ -14,7 +14,8 @@ class Podcast extends Model
         'title',
         'description',
         'user_id',
-        'image'
+        'image',
+        'audio'
     ];
     protected $table = 'podcasts';
     public function user(): BelongsTo {

@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 class PodcastController extends Controller
 {
-    public function __construct()
+    /* public function __construct()
     {
     }
-
+    */
     /**
      * Display a listing of the resource.
      */
@@ -40,14 +40,14 @@ class PodcastController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'podcast' => 'required',
-            'user_id' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,svg',
+            'audio' => 'required|mimes:mpga,mp3,wav,ogg,wma,mid',
         ]);
 
-        $podcastPath = Storage::disk('public')->put('podcasts', $request->podcast);
+        $audioPath = Storage::disk('public')->put('audios', $request->audio);
         $imagePath = Storage::disk('public')->put('images', $request->image);
 
-        auth()->user()->podcasts()->create([...$validated, 'podcast' => $podcastPath, 'image' => $imagePath]);
+        auth()->user()->podcasts()->create([...$validated, 'audio' => $audioPath, 'image' => $imagePath]);
         return redirect()->route('podcasts.the_podcasts')->with('message', 'Created post');
         //
     }
@@ -56,7 +56,7 @@ class PodcastController extends Controller
      * Display the specified resource.
      */
 
-    public function ThePodcasts(){
+    public function thePodcasts(){
         $podcasts = Podcast::where('user_id', auth()->user()->id)->get();
         return view('podcasts.the_podcasts',['podcasts' => $podcasts]);
     }

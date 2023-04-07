@@ -98,9 +98,9 @@ class UserController extends Controller
             User::destroy($user->id);
             return redirect()->route('users.index')->with('message',"User and it's data successfully deleted");
         }
-        elseif (!request()->has('deletePodcasts')){
-            abort(404);
-        }
+        /* elseif (!request()->has('deletePodcasts')){
+            abort(404, "no delete key is being received");
+        } */
 
         User::destroy($user->id);
         return redirect()->route('users.index')->with('message','User successfully deleted');

@@ -36,7 +36,6 @@
 
     <form action="{{route('podcasts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
         <div class="form-group">
             <label for="title">Podcast title</label>
             <input type="text" class="form-control" name="title" id="title">
@@ -53,11 +52,11 @@
         </div>
 
         <div class="form-group">
-            <label for="podcast">Podcast Audio</label>
-            <input type="file" class="form-control" name="podcast" id="podcast" accept="audio/*">
+            <label for="audio">Podcast Audio</label>
+            <input type="file" class="form-control" name="audio" id="audio" accept="audio/*">
         </div>
 
-       <input type="hidden" id="{{($podcasts->get('user_id'))}}">
+       <!-- <input type="hidden" id="{{--($podcasts->get('user_id')) --}}"> -->
 
         <button type="submit" class="btn btn-primary">Create Podcast</button>
     </form>
