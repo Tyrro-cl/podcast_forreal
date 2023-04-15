@@ -10,6 +10,8 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use App\Providers\RouteServiceProvider;
+use App\Models\User;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -56,4 +58,46 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+});
+
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('azure')->redirect();
+})->name('azure.login');
+Route::get('/login/microsoft/callback', function () {
+    $azureUser = Socialite::driver('azure')->user();
+
+    $user = User::updateOrCreate(
+        [
+            'email' => $azureUser->email,
+        ],
+
+        [
+            'azure_id' => $azureUser->id,
+            'password' => $azureUser->password,
+            'email' => $azureUser->email,
+            'name' =>$azureUser->name,
+            'id' => $azureUser->id
+        ]
+    );
+
+    Auth::login($user);
+    return redirect()->intended(RouteServiceProvider::HOME)->with('message','Connection successful');
+    /* $user = \App\Models\User::where([
+        'provider' => 'azure',
+        'provider_id' => $azureUser->getId()])->first();
+
+    if(!$user) {
+        $user = \App\Models\User::create([
+            'name' => $azureUser->getName(),
+            'email' => $azureUser->getEmail(),
+            'provider' => 'azure',
+            'provider_id' => $azureUser->getId(),
+            'email_verified_at' => now()
+        ]);
+    }
+    Auth::login($user);
+    return redirect('/');*/
+    // dd($user->getName(),$user->getEmail(),$user->getId());
+    // $user->token
 });
