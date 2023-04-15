@@ -59,7 +59,7 @@
                 <div class="card-body">
                     @foreach ($podcasts as $podcast)
                         <div class="media mb-3">
-                            <img src="{{ $podcast->image_url }}" class="align-self-start mr-3" alt="{{ $podcast->title }}" width="64" style="font-size:0">
+                            <img src="{{ $podcast->image }}" class="align-self-start mr-3" alt="{{ $podcast->title }}" width="64" style="font-size:0">
                             <div class="media-body">
                                 <h5 class="card-title" style="font-family: 'Berlin Sans FB',SansSerif,serif; text-decoration-line: underline" > Podcast title: {{ $podcast->title }}</h5>
                                 <h5 style="color: #1f2937">Description:</h5><p class="card-text" style="color: #6b7280; text-wrap: normal">
