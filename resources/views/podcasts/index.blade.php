@@ -13,7 +13,10 @@
                         @foreach($podcasts as $podcast)
                             <li class=" bg-white border-x-indigo-700 dark:bg-gray-800">
                                 <h3 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"> {{$podcast->title}}</h3>
-                                <p class="mb-lg-2 bg-white sm:rounded-lg p-2"> Summary : {{$podcast->description}}</p>
+                                <div class="mb-lg-2 bg-gray-900 sm:rounded-lg p-2">
+                                    <span class="dark:text-indigo-500 font-bold"> Summary: </span><p class="font-sans text-gray-50">  {{$podcast->description}}</p>
+                                    <span class="dark:text-indigo-500 font-bold mt-2">Author:</span> <p class="font-sans text-gray-50">{{ $podcast->user->name }}</p>
+                                </div>
                                 @if($podcast->audio)
                                     <audio class="my-6 pr-12" controls>
                                         <source src="{{ 'storage/'  .$podcast->audio }}" type="{{ Storage ::mimeType($podcast->audio) }}">
