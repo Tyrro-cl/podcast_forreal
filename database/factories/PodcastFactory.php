@@ -18,7 +18,7 @@ class PodcastFactory extends Factory
     {
         return [
             'title' => fake()->realText(10),
-            'description' => fake()->realText(50),
+            'description' => fake()->realText(100),
             // 'description' => fake()->sentence( 8, false),
             'created_at' => now(),
             'updated_at' => now(),
