@@ -22,7 +22,7 @@ class PodcastFactory extends Factory
             // 'description' => fake()->sentence( 8, false),
             'created_at' => now(),
             'updated_at' => now(),
-            //
+            // 'image' => \Storage::disk('public')->put('',  )
         ];
     }
 }
