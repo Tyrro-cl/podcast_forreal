@@ -19,11 +19,13 @@ class PodcastController extends Controller
     public function index()
     {
         $podcasts = Podcast::all();
+        // passes data to the component - should not pass user_id if we want to be perfectionist, because is the public card
+        // ! This approach caused only to display the component and not the view itself, where the component is integrated
         return view('podcasts.index', ['podcasts' => $podcasts]);
         //
     }
 
-    /**
+    /**cd
      * Show the form for creating a new resource.
      */
     public function create()
