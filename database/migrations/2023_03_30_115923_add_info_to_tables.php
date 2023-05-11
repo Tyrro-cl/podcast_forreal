@@ -30,6 +30,16 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
         });
+
+        Schema::create('admins', function(Blueprint $table){
+           $table->bigIncrements('id');
+           $table->string('name');
+           $table->string('last_name');
+           $table->string('password');
+           $table->string('email',128)->unique();
+           $table->rememberToken();
+           $table->timestamps();
+        });
     }
 
     /**
