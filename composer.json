@@ -15,6 +15,7 @@
         "laravel/ui": "^4.2",
         "league/flysystem": "^3.12",
         "nesbot/carbon": "^2.66",
+        "santigarcor/laratrust": "^8.2",
         "socialiteproviders/microsoft": "^4.2",
         "socialiteproviders/microsoft-azure": "^5.1"
     },
